@@ -14,7 +14,7 @@ print *, 'Digite um x:'
 read (*,*) x
 
 do while (erro >= eprec)
-    lnx = lnx + ((-1)**(n+1))*(((1 - x)**n)/n)
+    lnx = lnx + (-(1 - x)**n)/n
     erro = abs(log(x)-lnx)
     print *, log(x), lnx, erro, eprec
     n = n + 1
