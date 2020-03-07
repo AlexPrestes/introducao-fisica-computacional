@@ -1,24 +1,17 @@
-program prog6
-
-    implicit none
+program tarefa6
     
-    integer :: N, k
-    real*8, parameter :: pi = 4*atan(1d0)
-    real*8 :: x, yi, arg, zmod
-    complex, dimension(:), allocatable :: zroots
+    pi = 4*atan(1e0)
     
+    print *, 'Raízes da equação (Z - 2)**N = 3'
     print *, 'Digite o valor inteiro de N:'
     read (*,*) N
     
-    allocate(zroots(N))
-    
     do k = 1, N
-        arg = 2d0*pi*k/N
-        zmod = 3d0**(1d0/N)
-        x = zmod*cos(arg) + 2d0
+        arg = 2e0*pi*k/N
+        zmod = 3e0**(1e0/N)
+        x = zmod*cos(arg) + 2e0
         yi = zmod*sin(arg)
-        zroots(k) = cmplx(x, yi)
-        print *, k, zroots(k)
+        print '("Z"I0,": ",F8.5," ",SP,F8.5,"i")', k, cmplx(x, yi)
     end do
     
-end program prog6
+end program tarefa6
