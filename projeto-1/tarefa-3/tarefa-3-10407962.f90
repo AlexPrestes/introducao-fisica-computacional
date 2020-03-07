@@ -1,6 +1,7 @@
 program tarefa3
 
-    real, dimension(:), allocatable :: NumList
+    parameter (nmax=10000)
+    dimension NumList(nmax)
     
     open (unit=10, file='entrada-3-10407962')
     open (unit=11, file='saida-3-10407962')
