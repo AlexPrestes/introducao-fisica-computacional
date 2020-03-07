@@ -1,21 +1,23 @@
-program prog1
+program tarefa1
 
-implicit none
+    print *,'Digite a, b e c, respectivamente:'
+    read(*,*) a, b, c
+    
+    delta = (b**2) - (4*a*c)
+    
+    if (delta == 0) then
+        x1 = (-b + sqrt(delta))/(2*a)
+        print '(A10,I1)', "#Raízes:", 1
+        print '(A4,F8.5)', "X1: ", x1
+    else if (delta > 0) then
+        x1 = (-b + sqrt(delta))/(2*a)
+        x2 = (-b - sqrt(delta))/(2*a)
 
-integer :: n
-real*8 :: a, b, c, delta, x1, x2
+        print '(A10,I1)', "#Raízes: ", 2
+        print '(A4,F8.5)', "X1: ", x1
+        print '(A4,F8.5)', "X2: ", x2
+    else
+        print '(A10,I1)', "#Raízes: ", 0
+    end if
 
-print *,'Digite a, b e c, respectivamente:'
-read(*,*) a, b, c
-
-delta = (b**2) - (4*a*c)
-
-if (delta == 0) then
-    print *, 1, (-b + sqrt(delta))/(2*a)
-else if (delta > 0) then
-    print *, 2, (-b + sqrt(delta))/(2*a), (-b - sqrt(delta))/(2*a)
-else
-    print *, 0
-end if
-
-end program prog1
+end program tarefa1
