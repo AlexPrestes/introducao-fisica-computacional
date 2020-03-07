@@ -3,7 +3,7 @@ program tarefa3
     real, dimension(:), allocatable :: NumList
     
     open (unit=10, file='entrada-3-10407962')
-    open (unit=11, file='saida-1-10407962')
+    open (unit=11, file='saida-3-10407962')
     
     read (10,*) N
     allocate(NumList(N))
