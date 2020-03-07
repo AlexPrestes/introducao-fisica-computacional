@@ -16,5 +16,7 @@ program tarefa4
             write (11, *) i
         end if
     end do
+    
+    close(11)
 
 end program tarefa4
