@@ -1,29 +1,46 @@
-program prog8
+program tarefa8
 
+    ! Definindo o valor de pi
     pi = 4e0*atan(1e0)
     
-    print *, 'Digite o número de dimensões d:'
-    read (*,*) n
-    
-    r = 1e0
-    arg = (n/2e0 + 1e0)
-    ugamma = 1e0
-    gamma2 = gamma(arg)
+    ! Definindo unit para o arquivo de saida
+    open(unit=10, file='saida-8-10407962')
 
-    arg = arg-1e0
+    ! Recebe o valor do raio
+    print *, 'Digite o raio R:'
+    read (*,*) R
+
+    ! Recebe o valor da dimensão
+    print *, 'Digite o número de dimensões d:'
+    read (*,*) id
     
-    do while (arg > 0e0)
-        ugamma = arg*ugamma
-        if (arg >= 1e0) then
-            arg = arg-1e0
-        else
-            ugamma = sqrt(pi)*ugamma
-            arg = 0e0
-        end if
+    ! loop que para mudar a dimensão de 2 até d
+    do i = 2, id
+        
+        ! definindo arg e dgamma inicial
+        ! aqui está sem as redundancia da tarefa-7
+        arg = i/2e0
+        dgamma = 1e0
+
+        ! loop que calcula o dgamma
+        do while (arg > 0e0)
+            if (arg >= 1e0) then
+                dgamma = arg*dgamma
+                arg = arg-1e0
+            else
+                dgamma = arg*sqrt(pi)*dgamma
+                arg = 0e0
+            end if
+        end do
+    
+        ! calculo do volume d
+        V = (pi**(i/2e0) * R**i) / dgamma
+
+        ! escreve a dimensão e o volume no arquivo de saida
+        write (10,'(I0,", ",F0.6)') i, V
     end do
+
+    ! fecha o arquivo de saida
+    close (10)
     
-    V = (pi**(n/2e0) * r**n) / ugamma
-    
-    print *, V
-    
-end program prog8
+end program tarefa8
