@@ -34,7 +34,7 @@ program tarefa3
     
     !gera o arquivo de saida com os M primeiros números
     do i = 1, M
-        write (11,*) ANumList(i)
+        write (11,'(F0.8)') ANumList(i)
     end do
     close (11)
 
