@@ -1,64 +1,59 @@
-program prog7
-
-    implicit none
+program tarefa7
+    ! Definindo valor de pi
+    pi = 4e0*atan(1e0)
     
-    integer*8 :: i, j
-    integer*8 :: d, M, N
-    real*8 :: rmod, R, Vd, dgamma, arg
-    real*8, parameter :: pi = 4d0*atan(1d0)
-    real*8, dimension(:), allocatable :: p
-    
+    ! Variável inteira id que recebe o número da dimensão
     print *, 'Digite o número de dimensões d:'
-    read (*,*) d
+    read (*,*) id
     
+    ! Número M aleátorios 
     print *, ''
     print *, 'Digite o número de iterações M:'
     read (*,*) M
     
-    allocate(p(d))
-    
+    ! Contador N de pontos dentro da d-esfera
     N = 0
-    R = 1d0
     
-    print *, 'iniciando...'
-    
+    ! loop de ;m iterações
     do i = 1, M
-        do j = 1, d
-            p(j) = rand()
-        end do
-        
+        ! Variável que irá armazenar o modulo ao quadrado de cada ponto
         rmod = 0
-        
-        do j = 1, d
-            rmod = rmod + p(j)**2
+        ! Coordenadas aleátorias do ponto
+        do j = 1, id
+            rmod = rmod + rand()**2
         end do
-        
-        if (rmod <= 1d0) then
+        ! Soma +1 em N, se o ponto estiver dentro da d-esfera
+        if (rmod <= 1e0) then
             N = N + 1
         end if
     end do
-    print *, 'Finalizado...'
-    print *, (dfloat(N)/dfloat(M))*((2d0*R)**d)
     
-    arg = (d/2d0 + 1d0)
-    dgamma = 1d0
+    ! Volume obtido pelo metodo de monte carlo
+    Vmc = (float(N)/float(M)) * 2e0**id
     
-    arg = arg - 1
+    ! arg = d/2 + 1
+    ! dgamma(arg) = (arg-1)*dgamma(arg-1)
+    arg = (id/2e0 + 1e0)
+    dgamma = 1e0
     
-    !print *, sqrt(pi)
-    
-    do while (arg > 0d0)
-        if (arg >= 1d0) then
+    arg = arg - 1e0
+    ! O Cálculo da função gamma é reproativo,
+    ! então precisa verificar se a última iteração será gamma(1) ou gamma(1/2)
+    do while (arg > 0e0)
+        if (arg >= 1e0) then
             dgamma = arg*dgamma
-            arg = arg - 1d0
+            arg = arg - 1e0
         else
             dgamma = arg*sqrt(pi)*dgamma
-            arg = 0
+            arg = 0e0
         end if
     end do
+
+    ! Cálculo do volume de d-esfera de raio 1
+    Vd = pi**(id/2e0) / dgamma
     
-    Vd = (pi**(d/2) * R**d) / dgamma
+    ! Imprime os volumes da tela
+    print '(A,F0.6)', 'Volume por Monte Carlo: ', Vmc
+    print '(A,F0.6)', 'Volume por n-esferas:   ', Vd
     
-    print *, Vdd
-    
-end program prog7
+end program tarefa7
