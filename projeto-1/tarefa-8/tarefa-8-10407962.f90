@@ -5,6 +5,7 @@ program tarefa8
     
     ! Definindo unit para o arquivo de saida
     open(unit=10, file='saida-8-10407962')
+    write (10,'(A)') '#d, Area'
 
     ! Recebe o valor do raio
     print *, 'Digite o raio R:'
