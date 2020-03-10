@@ -14,7 +14,7 @@ program tarefa5
     read (*,*) x
 
     ! verifica se está dentro do raio de convergencia
-    if ((x <= 0) .or. (2e0 <= x)) then
+    if ((x.le.0) .or. (2e0.le.x)) then
         print *, 'x está fora do raio de convergencia'
         ! sai do programa
         stop
@@ -24,7 +24,7 @@ program tarefa5
 
     ! calcula a aproximação até atingir o erro eprec
     ! ou até que não haja mais variação no erro    
-    do while ((erro >= eprec) .and. (erro /= abs(slogx - slnx)))
+    do while ((erro.ge.eprec) .and. (erro.ne.abs(slogx - slnx)))
         erro = abs(slogx - slnx)
         n = n + 1
         slnx = slnx -(1e0 - x)**n/n
@@ -45,7 +45,7 @@ program tarefa5
     dlogx = dlog(dx)
     
     ! calcula a aproximação até que não haja mais variação do erro
-    do while (derro /= abs(dlogx - dlnx))
+    do while (derro.ne.abs(dlogx - dlnx))
         derro = abs(dlogx - dlnx)
         n = n + 1
         dlnx = dlnx -(1 - dx)**n/n

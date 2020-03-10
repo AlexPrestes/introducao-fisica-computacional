@@ -24,7 +24,7 @@ program tarefa3
     !Algoritmo de ordenação, verifica termo a termo
     do i = n, 1, -1
         do j = n, 2, -1
-            if (ANumList(j) < ANumList(j-1)) then
+            if (ANumList(j).lt.ANumList(j-1)) then
                 aux = ANumList(j)
                 ANumList(j) = ANumList(j-1)
                 ANumList(j-1) = aux

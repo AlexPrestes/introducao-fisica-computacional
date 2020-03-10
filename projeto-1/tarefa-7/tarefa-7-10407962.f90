@@ -23,7 +23,7 @@ program tarefa7
             rmod = rmod + rand()**2
         end do
         ! Soma +1 em N, se o ponto estiver dentro da d-esfera
-        if (rmod <= 1e0) then
+        if (rmod.le.1e0) then
             N = N + 1
         end if
     end do
@@ -31,6 +31,7 @@ program tarefa7
     ! Volume obtido pelo metodo de monte carlo
     Vmc = (float(N)/float(M)) * 2e0**id
     
+    ! aqui é feita uma mudança de variável para facilitar
     ! arg = d/2 + 1
     ! dgamma(arg) = (arg-1)*dgamma(arg-1)
     arg = (id/2e0 + 1e0)
@@ -39,8 +40,8 @@ program tarefa7
     arg = arg - 1e0
     ! O Cálculo da função gamma é reproativo,
     ! então precisa verificar se a última iteração será gamma(1) ou gamma(1/2)
-    do while (arg > 0e0)
-        if (arg >= 1e0) then
+    do while (arg.gt.0e0)
+        if (arg.ge.1e0) then
             dgamma = arg*dgamma
             arg = arg - 1e0
         else

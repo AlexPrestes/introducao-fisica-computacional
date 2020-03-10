@@ -31,8 +31,8 @@ program tarefa8
         dgamma = 1e0
 
         ! loop que calcula o dgamma
-        do while (arg > 0e0)
-            if (arg >= 1e0) then
+        do while (arg.gt.0e0)
+            if (arg.ge.1e0) then
                 dgamma = arg*dgamma
                 arg = arg-1e0
             else
