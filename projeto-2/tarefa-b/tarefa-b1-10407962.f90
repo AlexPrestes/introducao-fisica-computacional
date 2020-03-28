@@ -3,8 +3,7 @@ program tarefab1
     parameter (N = 1000)
     dimension iposicao(-N:N)
 
-    open(10, file='saida-b1')
-    open(11, file='saida-b11')
+    open(10, file='saida-b1-10407962')
 
     print *, "valor p:"
     read(*,*) p
