@@ -1,8 +1,9 @@
 program tarefac
 
-    character*22 :: filename
-    parameter (Mmax=10000000)
+    character(22) filename
+    parameter (Mmax = 10000000, pi = 4d0*atan(1d0))
     complex, dimension(Mmax) :: zAndPos ! Vetor complexo da posicao de cada andarilho
+    complex :: zPasso
 
     write(*,*) 'Digite o número de passos (Nmax=10e6):'
     read(*,*) N
@@ -21,16 +22,9 @@ program tarefac
         do i = 1, M
 
             nrand = 4*rand()
-            
-            if (nrand.eq.0) then ! Norte
-                zAndPos(i) = zAndPos(i) + ( 0,  1)
-            else if (nrand.eq.1) then ! Sul
-                zAndPos(i) = zAndPos(i) + ( 0, -1)
-            else if (nrand.eq.2) then ! Leste
-                zAndPos(i) = zAndPos(i) + ( 1,  0)
-            else ! Oeste
-                zAndPos(i) = zAndPos(i) + (-1,  0)
-            end if
+            arg = 0.5*pi*nrand
+            zPasso = cmplx(int(cos(arg)), int(sin(arg)))
+            zAndPos(i) = zAndPos(i) + zPasso
 
         end do
 
