@@ -3,10 +3,13 @@ program tarefad
     parameter (M = 400, N = 1000000, pi = 4e0*atan(1e0))
     dimension I_AndPos(M,2), I_Passo(2), Prob(0:N*N)
 
+    open(10, file="saida-d-10407962")
+
     I_AndPos = 0
     Prob = 0
 
     do j = 1, N
+        S = 0
         do i = 1, M
 
             i_rand = 4*rand()
@@ -27,10 +30,16 @@ program tarefad
 
         Prob = Prob/M
 
-        write(*,*) j, Prob
-    
+        do i = 0, N*N
+            
+            if (Prob(i).ne.0) then
+                S = S + Prob(i)*log(Prob(i))
+            end if
+        end do
+
+        write(10,'(I0," ",1F0.3)') j, S
     end do
 
-    stop
+    close(10)
 
 end program tarefad
