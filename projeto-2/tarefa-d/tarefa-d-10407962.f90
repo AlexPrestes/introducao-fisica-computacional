@@ -1,7 +1,7 @@
 program tarefad
 
     parameter (M = 400, N = 1000000, pi = 4e0*atan(1e0))
-    dimension I_AndPos(M,2), I_Passo(2), Prob(0:5000*5000)
+    dimension I_AndPos(M,2), I_Passo(2), Prob(0:N*N)
 
     I_AndPos = 0
     Prob = 0
@@ -15,19 +15,22 @@ program tarefad
             I_AndPos(i,:) = I_AndPos(i,:) + I_Passo
 
         end do
-    end do
 
-    do i = 1, M
+        do i = 1, M
 
-        i_x = abs(I_AndPos(i,1))
-        i_y = abs(I_AndPos(i,2))
-        iglob = i_x + i_y*N
-        Prob(iglob) = Prob(iglob) + 1
+            i_x = abs(I_AndPos(i,1))
+            i_y = abs(I_AndPos(i,2))
+            iglob = i_x + i_y*N
+            Prob(iglob) = Prob(iglob) + 1
+    
+        end do
+
+        Prob = Prob/M
+
+        write(*,*) j, Prob
     
     end do
 
-    Prob = Prob/M
-
-    write(*,*) Prob
+    stop
 
 end program tarefad

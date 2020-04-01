@@ -14,7 +14,7 @@ program tarefab2
     p = (/1e0/3, 1e0/4, 1e0/5/)
 
     ! recebe o número de andarilhos M
-    write(*,*) 'Digite o valor M de bebados:'
+    write(*,*) 'Digite o valor M de andarilhos:'
     read(*,*) M
 
     ! loop das probabilidades
