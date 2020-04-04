@@ -1,7 +1,7 @@
 program tarefad
 
-    parameter (M = 400, N = 1000000, pi = 4e0*atan(1e0))
-    dimension I_AndPos(M,2), I_Passo(2), Prob(0:N*N)
+    parameter (M = 400, N = 1000000, Nmax=3000, pi = 4e0*atan(1e0))
+    dimension I_AndPos(M,2), I_Passo(2), Prob(0:Nmax*Nmax)
 
     open(10, file="saida-d-10407962")
 
@@ -23,17 +23,17 @@ program tarefad
 
             i_x = abs(I_AndPos(i,1))
             i_y = abs(I_AndPos(i,2))
-            iglob = i_x + i_y*N
+            iglob = i_x + i_y*Nmax
             Prob(iglob) = Prob(iglob) + 1
     
         end do
 
         Prob = Prob/M
 
-        do i = 0, N*N
+        do i = 0, Nmax*Nmax
             
             if (Prob(i).ne.0) then
-                S = S + Prob(i)*log(Prob(i))
+                S = S - Prob(i)*log(Prob(i))
             end if
         end do
 
