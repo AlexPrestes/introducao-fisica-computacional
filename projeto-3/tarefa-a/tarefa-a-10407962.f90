@@ -7,7 +7,7 @@ program tarefaa
     do i = 2, 10
         
         h = 1d0/2d0**i
-        write(*,*) h, dfrente2p(f, x, h)-df(x), dtras2p(f, x, h)-df(x), dsimetrica3p(f, x, h)-df(x), dsimetrica5p(f, x, h)-df(x)
+        write(*,*) h, dfrente2p(f, x, h)-df(x), dtras2p(f, x, h)-df( x), dsimetrica3p(f, x, h)-df(x), dsimetrica5p(f, x, h)-df(x)
 
     end do
 
