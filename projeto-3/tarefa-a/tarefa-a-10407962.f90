@@ -1,13 +1,13 @@
 program tarefaa
-    implicit real*8 (a-h,o-z)
+    implicit real*16 (a-h,o-z)
 
     dimension h(14)
 
     ! Funções exatas
-    f(x) = dsinh(2*x)*dsin(x/4)
-    df(x) = 2*dcosh(2*x)*dsin(x/4) + dcos(x/4)*dsinh(2*x)/4
-    d2f(x) = dcos(x/4)*dcosh(2*x) + 63*dsin(x/4)*dsinh(2*x)/16
-    d3f(x) = 61*dcosh(2*x)*dsin(x/4)/8 + 191*dcos(x/4)*dsinh(2*x)/64 
+    f(x) = sinh(2*x)*sin(x/4)
+    df(x) = 2*cosh(2*x)*sin(x/4) + cos(x/4)*sinh(2*x)/4
+    d2f(x) = cos(x/4)*cosh(2*x) + 63*sin(x/4)*sinh(2*x)/16
+    d3f(x) = 61*cosh(2*x)*sin(x/4)/8 + 191*cos(x/4)*sinh(2*x)/64 
 
     ! Funções aproximaximadas
     dfrente2p(x, h_i) = ( f(x+h_i) - f(x) ) / h_i
@@ -38,7 +38,6 @@ program tarefaa
         dsimetrica5p_x_h = dsimetrica5p(x, h(i))
         d2simetrica5p_x_h = d2simetrica5p(x, h(i))
         d3antisimetrica5p_x_h = d3antisimetrica5p(x, h(i))
-
         
         write(10,*) h(i), abs(dfrente2p_x_h-df_x), abs(dtras2p_x_h-df_x), abs(dsimetrica3p_x_h-df_x), &
                     abs(dsimetrica5p_x_h-df_x), abs(d2simetrica5p_x_h-d2f_x), abs(d3antisimetrica5p_x_h-d3f_x)
