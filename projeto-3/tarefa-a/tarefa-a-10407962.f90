@@ -23,8 +23,7 @@ program tarefaa
     ! 
     open(10, file='saida-a-10407962')
 
-    write(*,*) 'Escreva o valor de x:'
-    read(*,*) x
+    x = 1d0
 
     df_x  = df(x)
     d2f_x = d2f(x)

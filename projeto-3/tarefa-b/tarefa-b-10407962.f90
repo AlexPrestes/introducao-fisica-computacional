@@ -17,6 +17,7 @@ program tarefab
     end do
 
     close(10)
+    write(*,'(A,5F0.11)') 'Valor exado: ', exato
 
 contains
 
