@@ -15,6 +15,7 @@ program tarefac
     flag_new = .true.
     flag_sec = .true.
 
+    write(*,*) 
     read(*,*) a, b, x0_new, x0_sec
 
     do while ( (n <= nmax) .and. (flag_dir .or. flag_new .or. flag_sec) )
@@ -25,14 +26,14 @@ program tarefac
             else
                 b = x_dir
             end if
-            desv_dir = (b-a)/2
+            desv_dir = f(a)-f(b)
         else
             flag_dir = .false.
         end if
 
         if ( desv_new**2 .gt. erro**2 ) then
             x_new = x0_new - f(x0_new)/df(x0_new)
-            desv_new = (x_new - x0_new)/2
+            desv_new = f(x_new) - f(x0_new)
             x0_new = x_new
         else
             flag_new = .false.
@@ -41,7 +42,7 @@ program tarefac
         if ( desv_sec**2 .gt. erro**2 ) then
             df_sec = ( f(x0_sec + h) - f(x0_sec) ) / h
             x_sec = x0_sec - f(x0_sec)/df_sec
-            desv_sec = (x_sec - x0_sec)/2
+            desv_sec = f(x_sec) - f(x0_sec)
             x0_sec = x_sec
         else
             flag_sec = .false.
