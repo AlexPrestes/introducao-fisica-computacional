@@ -1,5 +1,5 @@
 program tarefaa
-    implicit real*16 (a-h,o-z)
+    implicit real*8 (a-h,o-z)
 
     dimension h(14)
 
