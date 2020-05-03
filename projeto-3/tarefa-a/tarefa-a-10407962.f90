@@ -20,17 +20,21 @@ program tarefaa
     ! vetor com os valor de h
     h = (/0.5, 0.2, 0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001, 0.00005, 0.00001, 0.000001, 0.0000001, 0.00000001/)
 
-    ! 
+    ! Arquivo de saida
     open(10, file='saida-a-10407962')
 
+    ! x para calcular a derivada
     x = 1d0
 
+    ! valor de cada derivada analitica
     df_x  = df(x)
     d2f_x = d2f(x)
     d3f_x = d3f(x)
 
+    ! loop para alterar o valor de h
     do i = 1, 14
 
+        ! desvio de cada método
         erro1 = abs(dfrente2p(x, h(i)) - df_x)
         erro2 = abs(dtras2p(x, h(i)) - df_x)
         erro3 = abs(dsimetrica3p(x, h(i)) - df_X)
@@ -38,9 +42,11 @@ program tarefaa
         erro5 = abs(d2simetrica5p(x, h(i)) - d2f_x)
         erro6 = abs(d3antisimetrica5p(x, h(i)) - d3f_x)
         
+        ! escreve no arquivo de saida
         write(10,*) h(i), erro1, erro2, erro3, erro4, erro5, erro6
     end do
 
+    ! escreve na tela os valores exatos
     write(*,'(A,F0.11)') 'df/dx: ', df_x
     write(*,'(A,F0.11)') 'd^2f/dx^2: ', d2f_x
     write(*,'(A,F0.11)') 'd^3f/dx^3: ', d3f_x
