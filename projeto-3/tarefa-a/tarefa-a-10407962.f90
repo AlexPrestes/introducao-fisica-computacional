@@ -31,15 +31,14 @@ program tarefaa
 
     do i = 1, 14
 
-        dfrente2p_x_h = dfrente2p(x, h(i))
-        dtras2p_x_h = dtras2p(x, h(i))
-        dsimetrica3p_x_h = dsimetrica3p(x, h(i))
-        dsimetrica5p_x_h = dsimetrica5p(x, h(i))
-        d2simetrica5p_x_h = d2simetrica5p(x, h(i))
-        d3antisimetrica5p_x_h = d3antisimetrica5p(x, h(i))
+        erro1 = abs(dfrente2p(x, h(i)) - df_x)
+        erro2 = abs(dtras2p(x, h(i)) - df_x)
+        erro3 = abs(dsimetrica3p(x, h(i)) - df_X)
+        erro4 = abs(dsimetrica5p(x, h(i)) - df_x)
+        erro5 = abs(d2simetrica5p(x, h(i)) - d2f_x)
+        erro6 = abs(d3antisimetrica5p(x, h(i)) - d3f_x)
         
-        write(10,*) h(i), abs(dfrente2p_x_h-df_x), abs(dtras2p_x_h-df_x), abs(dsimetrica3p_x_h-df_x), &
-                    abs(dsimetrica5p_x_h-df_x), abs(d2simetrica5p_x_h-d2f_x), abs(d3antisimetrica5p_x_h-d3f_x)
+        write(10,*) h(i), erro1, erro2, erro3, erro4, erro5, erro6
     end do
 
     write(*,'(A,F0.11)') 'df/dx: ', df_x
