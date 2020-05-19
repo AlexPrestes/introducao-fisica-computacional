@@ -1,21 +1,34 @@
 program tarefaa
-    implicit real*8 (a-h,o-z)
+    character(70) filename
+    dimension v0(2), e0(3)
 
-    parameter (pi = 4d0*datan(1d0))
+    e0 = (/0.01, 0.001, 0.0001/)
+    v0 = (/0.0, 10.0/)
 
-    real(8), dimension(2) :: x, v, a
+    do i = 1, 2
+        do j = 1, 3
+        
+            ! Parametros iniciais
+            r = 100e0       ! Posição
+            v = v0(i)       ! Velocidade
+            g = 10e0        ! Aceleração
+            t = 0e0         ! Tempo
+            e = e0(j)       ! Incremento temporal
 
-    x = (/0d0, 100d0/)
-    v0 = 10d0
-    theta = pi/4
-    v = v0*(/dcos(theta), dsin(theta)/)
-    a = (/0d0, -10d0/)
-    h = 0.01
+            write(filename,'(A,2(I0,A))') 'saida-a-v',i,'-e',j,'-10407962.dat'
 
-    do while (x(2).ge.0d0)
-        v = v + h*a
-        x = x + h*v
-        print *, x
+            open(10, file=filename)
+
+            do while (r.ge.0)
+                write(10, '(F0.6,2(" ",F0.6))') t, r, v
+                a = -g
+                v = v + e*a
+                r = r + e*v
+                t = t + e
+            end do
+
+            close(10)
+        end do
     end do
 
 end program tarefaa
