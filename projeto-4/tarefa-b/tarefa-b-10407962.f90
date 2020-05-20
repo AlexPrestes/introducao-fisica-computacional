@@ -1,4 +1,5 @@
 program tarefab
+    implicit real(8) (a-h,o-z)
     character(70) filename
     dimension v0(2), gama0(2)
 
@@ -23,7 +24,7 @@ program tarefab
             do while (r.ge.0)
                 write(10, '(F0.6,2(" ",F0.6))') t, r, v
                 a = -g -gama*v
-                v = v + e*a
+                v = v + e*a/2
                 r = r + e*v
                 t = t + e
             end do

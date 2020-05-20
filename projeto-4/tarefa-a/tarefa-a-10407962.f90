@@ -1,4 +1,5 @@
 program tarefaa
+    implicit real(8) (a-h,o-z)
     character(70) filename
     dimension v0(2), e0(3)
 
@@ -9,20 +10,22 @@ program tarefaa
         do j = 1, 3
         
             ! Parametros iniciais
-            r = 100e0       ! Posição
+            r = 100d0       ! Posição
             v = v0(i)       ! Velocidade
-            g = 10e0        ! Aceleração
-            t = 0e0         ! Tempo
+            g = 10d0        ! Aceleração
+            t = 0d0         ! Tempo
             e = e0(j)       ! Incremento temporal
+            rexato = f(r, v, a, 0d0)
 
             write(filename,'(A,2(I0,A))') 'saida-a-v',i,'-e',j,'-10407962.dat'
 
             open(10, file=filename)
 
             do while (r.ge.0)
-                write(10, '(F0.6,2(" ",F0.6))') t, r, v
+                write(10, '(F0.6,2(" ",F0.6)," ",4E0.5)') t, r, v, abs(rexato-r)
+                rexato = f(r, v, a, e)
                 a = -g
-                v = v + e*a
+                v = v + e*a/2
                 r = r + e*v
                 t = t + e
             end do
@@ -30,5 +33,13 @@ program tarefaa
             close(10)
         end do
     end do
+
+contains
+
+    function f(r0, v0, a0, t)
+        implicit real(8) (a-h,o-z)
+        f = r0 + v0*t + 0.5*a0*t**2
+        return
+    end function
 
 end program tarefaa
