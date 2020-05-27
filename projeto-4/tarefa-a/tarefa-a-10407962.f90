@@ -10,11 +10,12 @@ program tarefaa
         do j = 1, 3
         
             ! Parametros iniciais
-            r = 100d0       ! Posição
-            v = v0(i)       ! Velocidade
-            g = 10d0        ! Aceleração
-            t = 0d0         ! Tempo
-            e = e0(j)       ! Incremento temporal
+            e = e0(j)           ! Incremento temporal
+            g = 10d0            ! gravidade
+            a = -g              ! Aceleração
+            r = 100d0           ! Posição
+            v = v0(i) +e*a/2    ! Velocidade
+            t = 0d0             ! Tempo
             rexato = f(r, v, a, 0d0)
 
             write(filename,'(A,2(I0,A))') 'saida-a-v',i,'-e',j,'-10407962.dat'
@@ -25,7 +26,7 @@ program tarefaa
                 write(10, '(F0.6,2(" ",F0.6)," ",4E0.5)') t, r, v, abs(rexato-r)
                 rexato = f(r, v, a, e)
                 a = -g
-                v = v + e*a/2
+                v = v + e*a
                 r = r + e*v
                 t = t + e
             end do

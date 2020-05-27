@@ -10,12 +10,13 @@ program tarefab
         do j = 1, 2
         
             ! Parametros iniciais
+            e = 0.001           ! Incremento temporal
+            g = 10e0            ! Gravidade
+            gama = gama0(j)     ! resistência do ar gamma
+            a = -g              ! Aceleração
             r = 100e0           ! Posição
             v = v0(i)           ! Velocidade
-            g = 10e0            ! Aceleração
             t = 0e0             ! Tempo
-            e = 0.001           ! Incremento temporal
-            gama = gama0(j)     ! resistência do ar gamma
 
             write(filename,'(A,2(I0,A))') 'saida-b-v',i,'-g',j,'-10407962.dat'
 

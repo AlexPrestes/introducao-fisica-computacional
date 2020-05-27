@@ -18,16 +18,18 @@ program tarefaf
 
     do i = 1, 3
         ! Parametros iniciais
+        e = e0                              ! Incremento temporal
         gama = (/gama0, gama0/)             ! Fator gamma
         alfa = alfa0(i)                     ! Angulo alfa
         d = (/dx, dy/)                      ! fator de choque
         g = (/0d0, g0/)                     ! gravidade
+        a = -g                              ! Aceleração
         r = r0                              ! Posição
         v = v0*(/dcos(alfa), dsin(alfa)/)   ! Velocidade
+        v = v + e*a/2
         t = t0                              ! Tempo
-        e = e0                              ! Incremento temporal
 
-        write(filename,'(A,1(I0,A))') 'saida-e-al',i,'-10407962.dat'
+        write(filename,'(A,1(I0,A))') 'saida-f-al',i,'-10407962.dat'
 
         open(10, file=filename)
 

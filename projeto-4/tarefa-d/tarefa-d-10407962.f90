@@ -16,13 +16,15 @@ program tarefad
 
     do i = 1, 3
         ! Parametros iniciais
+        e = e0                              ! Incremento temporal
         alfa = alfa0(i)                     ! angulo alfa
         gama = (/gama0, gama0/)             ! fator gamma
         g = (/0d0, g0/)                     ! gravidade
+        a = -g                              ! Aceleração
         r = r0                              ! Posição
-        v = v0*(/dcos(alfa), dsin(alfa)/)   ! Velocidade
+        v = v0*(/dcos(alfa), dsin(alfa)/)   ! Velocidade descomposta
+        v = v + e*a/2                       ! Velocidade
         t = t0                              ! Tempo
-        e = e0                              ! Incremento temporal
 
         write(filename,'(A,1(I0,A))') 'saida-d-al',i,'-10407962.dat'
 
