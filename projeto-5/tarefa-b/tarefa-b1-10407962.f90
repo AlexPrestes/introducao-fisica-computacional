@@ -42,7 +42,7 @@ program tarefab1
         end do
         sumT = 2*sumT/n
         solucaoNum = simpson(f, -theta_0+e, theta_0-e, i, theta_0)
-        solucaoAna = analitico(theta_0, a_l, g, e)
+        solucaoAna = 2*analitico(theta_0, a_l, g, e)
 
         write(10,'(F0.8,2(" ",F0.8))') theta_0, sumT, solucaoNum + solucaoAna
     end do
@@ -66,8 +66,7 @@ contains
 
     function analitico(theta_0, a_l, g, e)
         implicit real(8) (a-h,o-z)
-        A = sqrt(2*a_l/g)*sqrt(e)*0.5/sqrt(theta_0)
-        analitico = 2*A
+        analitico = 2*sqrt(2*a_l/g)*sqrt(e)/sqrt(theta_0)
         return
     end function
 
