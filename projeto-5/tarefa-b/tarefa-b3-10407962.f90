@@ -35,7 +35,8 @@ program tarefab3
 
     freqnat = sqrt(g/a_l)
     write(*,'(A,F8.6)') 'Freq. Natural: ', freqnat
-    write(*,'(A,F8.6)') 'gamma/2: ', gama/2
+    write(*,'(A,F8.6)') 'gamma: ', gama
+    write(*,'(A,F0.6)') 'Delta: ', 4*(gama**2 -freqnat**2)
 
 contains
     function dw(g, a_l, theta, gama, dTheta, F0, Omega, t)

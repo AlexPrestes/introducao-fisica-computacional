@@ -10,7 +10,7 @@ program tarefab1
     
     open(10, file='saida-b1-10407962.dat')
 
-    do j = 1, 20
+    do j = 1, 30
         omega_i = 0d0
         theta_0 = rand()
         theta_i = theta_0
