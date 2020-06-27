@@ -6,24 +6,26 @@ program tarefaa2
     dimension ri(2), rmi(2), d2rdt2(2), v(2)
 
     dt = 1d0
+    Tt = 365
+    dMs = 2d30
 
-    Tt = 365*24
-
-    open(20, file='entrada-a1-10407962.dat')
+    open(20, file='entrada-a-10407962.dat')
 
     do j = 1, 9
         read(20,*) dplaneta, dmassa, draio, dexce
 
-        write(filename, '(A,A,A)') 'saida-a1-', trim(dplaneta), '-10407962.dat'
+        write(filename, '(A,A,A)') 'saida-a2-', trim(dplaneta), '-10407962.dat'
 
         Tp = Tt*sqrt(draio**3d0)
-
-        v = (/0d0, 2*pi*draio/Tp /)
-    
-        rmi = (/ draio, 0d0 /)
-        ri = rmi +v*dt
-
         GMs = ((2*pi)**2)*(draio**3)/(Tp**2)
+
+        vmin = sqrt(GMs)*sqrt((1-dexce)/(draio*(1+dexce)) * (1 +dmassa/dMs))
+        v = (/0d0, vmin /)
+
+        write(*,*) dplaneta, dnorm(v)*Tt, Tp/Tt
+    
+        rmi = (/ draio*(1-dexce), 0d0 /)
+        ri = rmi +v*dt
 
         open(10, file=filename)
 
@@ -43,7 +45,7 @@ program tarefaa2
 contains
     function dnorm(r)
         implicit real(8) (a-h,o-z)
-        dimension r(2), dnorm(2)
+        dimension r(2)
         dnorm = sqrt(r(1)**2 + r(2)**2)
         return
     end function

@@ -6,10 +6,9 @@ program tarefaa1
     dimension ri(2), rmi(2), d2rdt2(2), v(2)
 
     dt = 1d0
-
     Tt = 365
 
-    open(20, file='entrada-a1-10407962.dat')
+    open(20, file='entrada-a-10407962.dat')
 
     do j = 1, 9
         read(20,*) dplaneta, dmassa, draio, dexce
@@ -17,6 +16,7 @@ program tarefaa1
         write(filename, '(A,A,A)') 'saida-a1-', trim(dplaneta), '-10407962.dat'
 
         Tp = Tt*sqrt(draio**3d0)
+        GMs = ((2*pi)**2)*(draio**3)/(Tp**2)
 
         v = (/0d0, 2*pi*draio/Tp /)
 
@@ -24,8 +24,6 @@ program tarefaa1
     
         rmi = (/ draio, 0d0 /)
         ri = rmi +v*dt
-
-        GMs = ((2*pi)**2)*(draio**3)/(Tp**2)
 
         open(10, file=filename)
 
