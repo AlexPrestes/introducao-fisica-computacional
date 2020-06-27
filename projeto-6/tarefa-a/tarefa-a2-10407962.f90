@@ -19,8 +19,6 @@ program tarefaa1
         Tp = Tt*sqrt(draio**3d0)
 
         v = (/0d0, 2*pi*draio/Tp /)
-
-        write(*,*) dplaneta, dnorm(v), Tp
     
         rmi = (/ draio, 0d0 /)
         ri = rmi +v*dt
@@ -45,7 +43,7 @@ program tarefaa1
 contains
     function dnorm(r)
         implicit real(8) (a-h,o-z)
-        dimension r(2)
+        dimension r(2), dnorm(2)
         dnorm = sqrt(r(1)**2 + r(2)**2)
         return
     end function
