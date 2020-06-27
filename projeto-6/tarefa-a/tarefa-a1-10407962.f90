@@ -7,7 +7,7 @@ program tarefaa1
 
     dt = 1d0
 
-    Tt = 365*24
+    Tt = 365
 
     open(20, file='entrada-a1-10407962.dat')
 
@@ -20,7 +20,7 @@ program tarefaa1
 
         v = (/0d0, 2*pi*draio/Tp /)
 
-        write(*,*) dplaneta, dnorm(v), Tp
+        write(*,*) dplaneta, dnorm(v)*Tt, Tp/Tt
     
         rmi = (/ draio, 0d0 /)
         ri = rmi +v*dt

@@ -1,4 +1,4 @@
-program tarefaa1
+program tarefaa2
     implicit real(8) (a-h,o-z)
     character(70) filename
     character(10) dplaneta
@@ -66,4 +66,4 @@ contains
         
     end subroutine
 
-end program tarefaa1
+end program tarefaa2
